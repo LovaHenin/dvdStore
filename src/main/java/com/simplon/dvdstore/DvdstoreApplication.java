@@ -1,5 +1,4 @@
 package com.simplon.dvdstore;
-import com.simplon.dvdstore.repositories.DvdModelRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,12 +16,12 @@ public class DvdstoreApplication {
 		SpringApplication.run(DvdstoreApplication.class);
 
 	}
-	@Bean
-	public CommandLineRunner demo(DvdModelRepository repository){
-		return (args)->{
-			repository.save(new DvdModel("Titanic","Drame"));
-		};
-
-	}
+//	@Bean
+//	public CommandLineRunner demo(DvdModelRepository repository){
+//		return (args)->{
+//			repository.save(new DvdModel("Titanic","Drame"));
+//		};
+//
+//	}
 
 }

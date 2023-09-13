@@ -1,11 +1,13 @@
 package com.simplon.dvdstore.repositories;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class DvdStoreRepository {
+import java.util.List;
+//@Repository
+public interface DvdStoreRepository extends CrudRepository<DvdRepositoryModel,Long> {
 
-    // implementer JPA
 
+   // DvdRepositoryModel save(DvdRepositoryModel dvdRepositoryModel);
 
 }
