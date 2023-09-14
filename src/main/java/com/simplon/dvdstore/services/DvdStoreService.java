@@ -5,6 +5,9 @@ import com.simplon.dvdstore.repositories.DvdStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 @Service
 public class DvdStoreService {
 @Autowired
@@ -19,4 +22,40 @@ public  boolean add( DvdServiceModel dvdServiceModel){
    return dvdRepositoryModelReturned!=null;
 }
 
+public ArrayList<DvdServiceModel> getAll() {
+    ArrayList<DvdServiceModel> dvdModelServices = new ArrayList<>();
+    ArrayList<DvdRepositoryModel> dvdRepositoryModels = dvdStoreRepository.findAll();
+
+    for(DvdRepositoryModel dvdRepositoryModel :dvdRepositoryModels){
+        dvdModelServices.add(new DvdServiceModel(dvdRepositoryModel.getName(),dvdRepositoryModel.getGenre()));
+
+    }
+return dvdModelServices;
+
+}
+
+public Optional<DvdServiceModel> getById(Long id){
+    Optional<DvdRepositoryModel> dvdStoreRepositoryResult=dvdStoreRepository.findById(id);
+
+    return Optional.of(new DvdServiceModel(dvdStoreRepositoryResult.get().getName(), dvdStoreRepositoryResult.get().getGenre()));
+
+}
+
+    public void deleteById(Long id) {
+    dvdStoreRepository.deleteById(id);
+    }
+
+    public boolean updateDvd(DvdServiceModel dvdServiceModel) {
+    Long id = dvdServiceModel.getId().get();
+
+    if (dvdStoreRepository.existsById(id)){
+        DvdRepositoryModel dvdRepositoryModel = new  DvdRepositoryModel(id,dvdServiceModel.getName(),dvdServiceModel.getGenre());
+
+
+        Object object = dvdStoreRepository.save(dvdRepositoryModel);
+
+        return object != null;
+    }
+        return false;
+    }
 }
