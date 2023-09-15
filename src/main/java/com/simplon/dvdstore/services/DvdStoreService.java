@@ -54,7 +54,7 @@ public Optional<DvdServiceModel> getById(Long id){
 
         Object object = dvdStoreRepository.save(dvdRepositoryModel);
 
-        return object != null;
+        return true;
     }
         return false;
     }
