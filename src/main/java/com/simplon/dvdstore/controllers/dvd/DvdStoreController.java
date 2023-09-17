@@ -1,11 +1,8 @@
-package com.simplon.dvdstore.controllers;
+package com.simplon.dvdstore.controllers.dvd;
 
-import com.simplon.dvdstore.repositories.DvdRepositoryModel;
-import com.simplon.dvdstore.services.DvdServiceModel;
-import com.simplon.dvdstore.services.DvdStoreService;
+import com.simplon.dvdstore.services.dvd.DvdServiceModel;
+import com.simplon.dvdstore.services.dvd.DvdStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

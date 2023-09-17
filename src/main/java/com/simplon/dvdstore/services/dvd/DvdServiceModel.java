@@ -1,4 +1,4 @@
-package com.simplon.dvdstore.services;
+package com.simplon.dvdstore.services.dvd;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;

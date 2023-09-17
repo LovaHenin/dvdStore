@@ -1,4 +1,4 @@
-package com.simplon.dvdstore.repositories;
+package com.simplon.dvdstore.repositories.client;
 
 import jakarta.persistence.*;//@Id
 import jakarta.persistence.Entity;
@@ -15,7 +15,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ClientRepositoryModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "nom")
     private String nom;

@@ -1,4 +1,4 @@
-package com.simplon.dvdstore.controllers;
+package com.simplon.dvdstore.controllers.dvd;
 
 //import lombok.Data;
 

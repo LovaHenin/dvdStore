@@ -1,4 +1,4 @@
-package com.simplon.dvdstore.repositories;
+package com.simplon.dvdstore.repositories.dvd;
 
 import jakarta.persistence.*;
 import lombok.*;

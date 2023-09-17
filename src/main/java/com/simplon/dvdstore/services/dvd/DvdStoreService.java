@@ -1,7 +1,8 @@
-package com.simplon.dvdstore.services;
+package com.simplon.dvdstore.services.dvd;
 
-import com.simplon.dvdstore.repositories.DvdRepositoryModel;
-import com.simplon.dvdstore.repositories.DvdStoreRepository;
+import com.simplon.dvdstore.repositories.dvd.DvdRepositoryModel;
+import com.simplon.dvdstore.repositories.dvd.DvdStoreRepository;
+import com.simplon.dvdstore.services.dvd.DvdServiceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

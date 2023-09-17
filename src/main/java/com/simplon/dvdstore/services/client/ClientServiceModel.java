@@ -1,4 +1,4 @@
-package com.simplon.dvdstore.services;
+package com.simplon.dvdstore.services.client;
 
 import lombok.Data;
 import org.springframework.stereotype.Service;
