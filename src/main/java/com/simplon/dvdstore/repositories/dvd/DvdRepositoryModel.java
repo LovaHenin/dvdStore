@@ -21,7 +21,7 @@ public class DvdRepositoryModel {
     @Column(name = "quantité")
     private Integer quantiteStock;
     @Column(name = "prix")
-    private BigDecimal prix;
+    private float prix;
 
     public DvdRepositoryModel(String name, String genre) {
         this.name = name;

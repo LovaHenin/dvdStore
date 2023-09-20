@@ -1,5 +1,6 @@
 package com.simplon.dvdstore.repositories.client;
 
+import com.simplon.dvdstore.repositories.vente.VenteRepositoryModel;
 import jakarta.persistence.*;//@Id
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -21,6 +25,7 @@ public class ClientRepositoryModel {
     private String nom;
     @Column(name = "adresse")
     private String adresse;
+
 
     public ClientRepositoryModel() {
     }
