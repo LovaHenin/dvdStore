@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "dvds")
-@Getter
+@Data
 @AllArgsConstructor
 public class DvdRepositoryModel {
     @Id

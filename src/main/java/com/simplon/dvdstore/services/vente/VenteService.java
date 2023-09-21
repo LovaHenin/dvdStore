@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
 
-@Service 
+@Service
 public class VenteService {
     @Autowired
     private VenteRepository venteRepository;
@@ -27,10 +27,14 @@ public class VenteService {
         Optional<DvdRepositoryModel> dvdStoreRepositoryResult=dvdStoreRepository.findById(venteServiceModel.getDvd_id());
         float prixtotal=venteServiceModel.getQuantite()*dvdStoreRepositoryResult.get().getPrix();
 
+
         int quantiteStock=dvdStoreRepositoryResult.get().getQuantiteStock()-venteServiceModel.getQuantite();
         // avec get à  la fin au lieu de optional => on reccupere l'objet
         ClientRepositoryModel clientRepositoryModel = clientRepository.findById(venteServiceModel.getClient_id()).get();
         DvdRepositoryModel dvdRepositoryModel = dvdStoreRepository.findById(venteServiceModel.getDvd_id()).get();
+
+        dvdRepositoryModel.setQuantiteStock(quantiteStock);
+        dvdStoreRepository.save(dvdRepositoryModel);
 
         //Optional<ClientRepositoryModel> clientRepositoryResult =clientRepository.findById(venteServiceModel.getClient_id());
 
