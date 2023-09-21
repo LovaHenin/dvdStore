@@ -11,32 +11,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("vente")
 public class VenteController {
-//    @Autowired
-//    private ClientRepository clientRepository;
-//    @Autowired
-//    private VenteRepository venteRepository;
+
     @Autowired
     private VenteService venteService;
 
-    @PutMapping
+    @PostMapping
     public boolean addVente(@RequestBody VenteDTO venteDTO){
-        // float prix,int quantite,Long dvd_id,Long client_id
-        VenteServiceModel venteServiceModel=new VenteServiceModel(venteDTO.prix(),venteDTO.quantite(),venteDTO.dvd_id(),venteDTO.client_id());
+        //String date, int quantite,Long dvd_id,Long client_id
+        VenteServiceModel venteServiceModel=new VenteServiceModel(LocalDate.parse(venteDTO.date()),venteDTO.quantite(),venteDTO.dvd_id(),venteDTO.client_id());
         return venteService.add(venteServiceModel);
     }
-//    @GetMapping("/{clientId}")
-//    public List<VenteDTO> getAllVentesByClientId(@PathVariable(value="clientId") Long clientId){
-//
-//        ArrayList<VenteDTO>venteDTOS = new ArrayList<>();
-//        ArrayList<VenteServiceModel> venteServiceModels =venteService.getAllById(clientId);
-//
-//      return venteDTOS;
-//    }
+
 
 }

@@ -11,4 +11,4 @@ package com.simplon.dvdstore.controllers.dvd;
 import ch.qos.logback.core.joran.conditional.PropertyEvalScriptBuilder;
 import lombok.Value;
 
-public record DvdStoreDTO(String name, String genre) {}
+public record DvdStoreDTO(String name, String genre,Float prix, int quantite) {}

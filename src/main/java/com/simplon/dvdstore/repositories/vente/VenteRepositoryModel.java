@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -25,8 +26,8 @@ public class VenteRepositoryModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+   // @CreationTimestamp
     @Column(name="date")
-    @JsonFormat(pattern = "dd/MM/yyyy",timezone = "Europe/Zagreb")
     private LocalDate date;
 
     @Column(name="prix")
@@ -51,12 +52,16 @@ public class VenteRepositoryModel {
     @JsonIgnore
     private DvdRepositoryModel dvd;
 
-    public VenteRepositoryModel(float prix, int quantite, Long dvd_id, Long client_id) {
-//        this.prix = prix;
-//        this.quantite = quantite;
-//        this.dvd_id = dvd_id;
-//        this.client_id = client_id;
+
+
+    public VenteRepositoryModel(LocalDate date, int quantite, float prixtotal, ClientRepositoryModel clientRepositoryModel, DvdRepositoryModel dvdRepositoryModel) {
+        this.date=date;
+        this.quantite=quantite;
+        this.prix=prixtotal;
+        this.client=clientRepositoryModel;
+        this.dvd=dvdRepositoryModel;
     }
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "dvd_repository_model_id")

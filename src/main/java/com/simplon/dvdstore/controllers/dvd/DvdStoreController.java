@@ -17,7 +17,7 @@ public class DvdStoreController {
 
     @PostMapping
     public  boolean addDvdToStore(@RequestBody DvdStoreDTO dvdStoreDTO){
-        DvdServiceModel dvdServiceModel = new DvdServiceModel(dvdStoreDTO.name(), dvdStoreDTO.genre());
+        DvdServiceModel dvdServiceModel = new DvdServiceModel(dvdStoreDTO.name(), dvdStoreDTO.genre(),dvdStoreDTO.prix(),dvdStoreDTO.quantite());
 
        return dvdStoreService.add(dvdServiceModel);
 
@@ -30,7 +30,7 @@ public class DvdStoreController {
         ArrayList<DvdServiceModel> dvdServiceModelArrayList =  dvdStoreService.getAll();
 
         for(DvdServiceModel x: dvdServiceModelArrayList){
-            dvdStoreDTOS.add(new DvdStoreDTO(x.getName(),x.getGenre()));
+            dvdStoreDTOS.add(new DvdStoreDTO(x.getName(),x.getGenre(), x.getPrix(), x.getQuantite()));
         }
 
         return dvdStoreDTOS;
@@ -38,7 +38,7 @@ public class DvdStoreController {
     @GetMapping("/{id}")
     public DvdStoreDTO getById(@PathVariable("id") Long number){
 
-       DvdStoreDTO dvdStoreDTO = new DvdStoreDTO(dvdStoreService.getById(number).get().getName(),dvdStoreService.getById(number).get().getGenre());
+       DvdStoreDTO dvdStoreDTO = new DvdStoreDTO(dvdStoreService.getById(number).get().getName(),dvdStoreService.getById(number).get().getGenre(),dvdStoreService.getById(number).get().getPrix(),dvdStoreService.getById(number).get().getQuantite());
 
             return dvdStoreDTO;
 
@@ -52,7 +52,7 @@ public class DvdStoreController {
     @PutMapping("/{id}")
     public boolean updateDvd(@PathVariable Long id, @RequestBody DvdStroGetDTO dvdStroGetDTO) {
 
-        DvdServiceModel dvdServiceModel = new DvdServiceModel(Optional.ofNullable(id),dvdStroGetDTO.name(),dvdStroGetDTO.genre());
+        DvdServiceModel dvdServiceModel = new DvdServiceModel(Optional.ofNullable(id),dvdStroGetDTO.name(),dvdStroGetDTO.genre(),dvdStroGetDTO.prix(),dvdStroGetDTO.quantite());
       return   dvdStoreService.updateDvd(dvdServiceModel);
 
 
