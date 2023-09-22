@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -67,11 +68,31 @@ public class VenteService {
 
          ));
         }
-
-
         return venteServiceModels;
     }
+    public ArrayList<VenteServiceModel> getAllById(Long id) {
+        ArrayList<VenteServiceModel> venteServiceModels = new ArrayList<>();
+        ArrayList<VenteRepositoryModel> venteRepositoryModels = venteRepository.findAll();
 
+
+        // stocker les ventes avec les objets
+        for(VenteRepositoryModel venteRepositoryModel:venteRepositoryModels){
+            if(Objects.equals(venteRepositoryModel.getClient().getId(),id)) {
+                DvdServiceModel dvdServiceModel = new DvdServiceModel(venteRepositoryModel.getDvd().getName(), venteRepositoryModel.getDvd().getGenre(), venteRepositoryModel.getDvd().getPrix(), venteRepositoryModel.getDvd().getQuantiteStock());
+                ClientServiceModel clientServiceModel = new ClientServiceModel(venteRepositoryModel.getClient().getNom(), venteRepositoryModel.getClient().getAdresse());
+
+                venteServiceModels.add(new VenteServiceModel(
+                        venteRepositoryModel.getDate(),
+                        venteRepositoryModel.getPrix(),
+                        venteRepositoryModel.getQuantite(),
+                        Optional.of(dvdServiceModel),
+                        Optional.of(clientServiceModel)
+
+                ));
+            }
+        }
+        return venteServiceModels;
+    }
 //    public ArrayList<VenteServiceModel> getAllById(Long clientId){
 //
 //        ArrayList<VenteServiceModel>venteServiceModels = new ArrayList<>();

@@ -42,5 +42,23 @@ public class VenteController {
     return ventesAfficheDTOS;
 
     }
+    @GetMapping ("/{id}")
+    public List<VentesAfficheDTO> getAllById(@PathVariable("id") Long id){
+        List<VentesAfficheDTO> ventesAfficheDTOS = new ArrayList<>();
+        ArrayList<VenteServiceModel>  venteServiceModels = venteService.getAllById(id);
+
+        for(VenteServiceModel venteServiceModel:venteServiceModels){
+
+            DvdStoreDTO dvdStoreDTO = new DvdStoreDTO(venteServiceModel.getDvdServiceModel().get().getName(),venteServiceModel.getDvdServiceModel().get().getGenre(),venteServiceModel.getDvdServiceModel().get().getPrix(), venteServiceModel.getDvdServiceModel().get().getQuantite());
+
+            ClientDTO clientDTO =new ClientDTO(venteServiceModel.getClientServiceModel().get().getNom(),venteServiceModel.getClientServiceModel().get().getAdresse());
+
+
+            ventesAfficheDTOS.add(new VentesAfficheDTO( venteServiceModel.getDate().toString(),venteServiceModel.getQuantite(),venteServiceModel.getPrix(),dvdStoreDTO,clientDTO));
+        }
+        return ventesAfficheDTOS;
+
+    }
+
 
 }
