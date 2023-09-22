@@ -9,7 +9,8 @@ import java.util.List;
 @Repository
 public interface VenteRepository extends JpaRepository<VenteRepositoryModel,Long> {
  //   ArrayList<VenteRepositoryModel>  findByClientId(Long postId);
-
+// pour eviter de caster
+    ArrayList<VenteRepositoryModel>findAll();
 
 
 }
