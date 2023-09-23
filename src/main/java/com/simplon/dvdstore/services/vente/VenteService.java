@@ -26,17 +26,18 @@ public class VenteService {
 
     public boolean add(VenteServiceModel venteServiceModel) {
 
-        Optional<DvdRepositoryModel> dvdStoreRepositoryResult=dvdStoreRepository.findById(venteServiceModel.getDvd_id().get());
+        DvdRepositoryModel dvdStoreRepositoryResult=dvdStoreRepository.findById(venteServiceModel.getDvd_id().get()).get();
         // calcul du prix total
-        float prixtotal=venteServiceModel.getQuantite()*dvdStoreRepositoryResult.get().getPrix();
+        float prixtotal=venteServiceModel.getQuantite()*dvdStoreRepositoryResult.getPrix();
 
        // mise à jour du stock dans la table dvd
-        int quantiteStock=dvdStoreRepositoryResult.get().getQuantiteStock()-venteServiceModel.getQuantite();
+        int quantiteStock=dvdStoreRepositoryResult.getQuantiteStock()-venteServiceModel.getQuantite();
 
         // avec get à  la fin au lieu de optional => on reccupere l'objet
         ClientRepositoryModel clientRepositoryModel = clientRepository.findById(venteServiceModel.getClient_id().get()).get();
-        DvdRepositoryModel dvdRepositoryModel = dvdStoreRepository.findById(venteServiceModel.getDvd_id().get()).get();
 
+        DvdRepositoryModel dvdRepositoryModel = dvdStoreRepository.findById(venteServiceModel.getDvd_id().get()).get();
+        // enregistrer la nouvelle quantité dans la base
         dvdRepositoryModel.setQuantiteStock(quantiteStock);
         dvdStoreRepository.save(dvdRepositoryModel);
 
