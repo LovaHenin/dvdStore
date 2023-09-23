@@ -55,15 +55,18 @@ public class VenteService {
 
     public ArrayList<VenteServiceModel> getAll() {
        ArrayList<VenteServiceModel> venteServiceModels = new ArrayList<>();
-        ArrayList<VenteRepositoryModel> venteRepositoryModels = venteRepository.findAll();
+       ArrayList<VenteRepositoryModel> venteRepositoryModels = venteRepository.findAll();
 
 
         // stocker les ventes avec les objets
         for(VenteRepositoryModel venteRepositoryModel:venteRepositoryModels){
-
+            //instanciation de DvdServiceModel
             DvdServiceModel dvdServiceModel = new DvdServiceModel(venteRepositoryModel.getDvd().getName(),venteRepositoryModel.getDvd().getGenre(),venteRepositoryModel.getDvd().getPrix(),venteRepositoryModel.getDvd().getQuantiteStock());
+
+            //instanciation de l'objet ClienServiceModel
             ClientServiceModel clientServiceModel = new ClientServiceModel(venteRepositoryModel.getClient().getNom(),venteRepositoryModel.getClient().getAdresse());
 
+            //optional car le champ dvdService est optional dans venteServiceModel
          venteServiceModels.add(new VenteServiceModel(
                  venteRepositoryModel.getDate(),
                 venteRepositoryModel.getPrix(),
@@ -77,12 +80,17 @@ public class VenteService {
     }
     public ArrayList<VenteServiceModel> getAllById(Long id) {
         ArrayList<VenteServiceModel> venteServiceModels = new ArrayList<>();
-        ArrayList<VenteRepositoryModel> venteRepositoryModels = venteRepository.findAll();
+        //ArrayList<VenteRepositoryModel> venteRepositoryModels = venteRepository.findAll();
+
+        //méthode de recherche personnalisée dans le VenteRepository qui récupère directement
+        //les ventes associées à un client donné en utilisant son ID.
+        //Cela évitera de récupérer toutes les ventes de la base de données et de les filtrer
+        ArrayList<VenteRepositoryModel> venteRepositoryModels = venteRepository.findByClientId(id);
 
 
         // stocker les ventes avec les objets
         for(VenteRepositoryModel venteRepositoryModel:venteRepositoryModels){
-            if(Objects.equals(venteRepositoryModel.getClient().getId(),id)) {
+          //  if(Objects.equals(venteRepositoryModel.getClient().getId(),id)) {
                 DvdServiceModel dvdServiceModel = new DvdServiceModel(venteRepositoryModel.getDvd().getName(), venteRepositoryModel.getDvd().getGenre(), venteRepositoryModel.getDvd().getPrix(), venteRepositoryModel.getDvd().getQuantiteStock());
                 ClientServiceModel clientServiceModel = new ClientServiceModel(venteRepositoryModel.getClient().getNom(), venteRepositoryModel.getClient().getAdresse());
 
@@ -94,7 +102,7 @@ public class VenteService {
                         Optional.of(clientServiceModel)
 
                 ));
-            }
+            //}
         }
         return venteServiceModels;
     }
