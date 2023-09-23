@@ -26,25 +26,29 @@ public class VenteService {
 
     public boolean add(VenteServiceModel venteServiceModel) {
 
-        DvdRepositoryModel dvdStoreRepositoryResult=dvdStoreRepository.findById(venteServiceModel.getDvd_id().get()).get();
+       Optional< DvdRepositoryModel> dvdStoreRepositoryResult=dvdStoreRepository.findById(venteServiceModel.getDvd_id().get());
         // calcul du prix total
-        float prixtotal=venteServiceModel.getQuantite()*dvdStoreRepositoryResult.getPrix();
+        float prixtotal=venteServiceModel.getQuantite()*dvdStoreRepositoryResult.get().getPrix();
 
        // mise à jour du stock dans la table dvd
-        int quantiteStock=dvdStoreRepositoryResult.getQuantiteStock()-venteServiceModel.getQuantite();
+        int quantiteStock=dvdStoreRepositoryResult.get().getQuantiteStock()-venteServiceModel.getQuantite();
 
-        // avec get à  la fin au lieu de optional => on reccupere l'objet
-        ClientRepositoryModel clientRepositoryModel = clientRepository.findById(venteServiceModel.getClient_id().get()).get();
+        // avec get à  la fin au lieu de optional => on reccupere l'objet associé à l'Id
+        // sans vérifier si cet enregistrement existe réellement dans la base de données.
+        // DvdRepositoryModel dvdRepositoryModel = dvdStoreRepository.findById(venteServiceModel.getDvd_id().get()).get();
 
-        DvdRepositoryModel dvdRepositoryModel = dvdStoreRepository.findById(venteServiceModel.getDvd_id().get()).get();
+        //avec optional soit contient soit l'objet  associé à l'ID recherché
+        //(si cet enregistrement existe dans la base de données)
+        //soit une valeur Optional.empty() si l'ID n'a pas été trouvé.
+        Optional<ClientRepositoryModel> clientRepositoryModel = clientRepository.findById(venteServiceModel.getClient_id().get());
         // enregistrer la nouvelle quantité dans la base
-        dvdRepositoryModel.setQuantiteStock(quantiteStock);
-        dvdStoreRepository.save(dvdRepositoryModel);
+        dvdStoreRepositoryResult.get().setQuantiteStock(quantiteStock);
+        dvdStoreRepository.save(dvdStoreRepositoryResult.get());
 
         //Optional<ClientRepositoryModel> clientRepositoryResult =clientRepository.findById(venteServiceModel.getClient_id());
 
-
-        VenteRepositoryModel venteRepositoryModel = new VenteRepositoryModel((venteServiceModel.getDate()),venteServiceModel.getQuantite(), prixtotal,clientRepositoryModel,dvdRepositoryModel);
+        // mapper la venteService en venteRepository
+        VenteRepositoryModel venteRepositoryModel = new VenteRepositoryModel((venteServiceModel.getDate()),venteServiceModel.getQuantite(), prixtotal,clientRepositoryModel.get(),dvdStoreRepositoryResult.get());
                 VenteRepositoryModel venteRepositoryModel1=venteRepository.save(venteRepositoryModel);
         return venteRepositoryModel1!=null;
     }
