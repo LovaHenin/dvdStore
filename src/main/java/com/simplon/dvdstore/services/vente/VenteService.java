@@ -1,5 +1,6 @@
 package com.simplon.dvdstore.services.vente;
 
+import com.simplon.dvdstore.exceptions.ClientNotFoundException;
 import com.simplon.dvdstore.repositories.client.ClientRepository;
 import com.simplon.dvdstore.repositories.client.ClientRepositoryModel;
 import com.simplon.dvdstore.repositories.dvd.DvdRepositoryModel;
@@ -85,12 +86,14 @@ public class VenteService {
         //méthode de recherche personnalisée dans le VenteRepository qui récupère directement
         //les ventes associées à un client donné en utilisant son ID.
         //Cela évitera de récupérer toutes les ventes de la base de données et de les filtrer
-        ArrayList<VenteRepositoryModel> venteRepositoryModels = venteRepository.findByClientId(id);
+        Optional<ArrayList<VenteRepositoryModel>> venteRepositoryModels = Optional.ofNullable(venteRepository.findByClientId(id));
 
-
-        // stocker les ventes avec les objets
-        for(VenteRepositoryModel venteRepositoryModel:venteRepositoryModels){
-          //  if(Objects.equals(venteRepositoryModel.getClient().getId(),id)) {
+        if (venteRepositoryModels.isEmpty()) {
+           return  null;
+        } else {
+            // stocker les ventes avec les objets
+            for (VenteRepositoryModel venteRepositoryModel : venteRepositoryModels.get()) {
+                //  if(Objects.equals(venteRepositoryModel.getClient().getId(),id)) {
                 DvdServiceModel dvdServiceModel = new DvdServiceModel(venteRepositoryModel.getDvd().getName(), venteRepositoryModel.getDvd().getGenre(), venteRepositoryModel.getDvd().getPrix(), venteRepositoryModel.getDvd().getQuantiteStock());
                 ClientServiceModel clientServiceModel = new ClientServiceModel(venteRepositoryModel.getClient().getNom(), venteRepositoryModel.getClient().getAdresse());
 
@@ -102,9 +105,10 @@ public class VenteService {
                         Optional.of(clientServiceModel)
 
                 ));
-            //}
+                //}
+            }
+            return venteServiceModels;
         }
-        return venteServiceModels;
     }
 //    public ArrayList<VenteServiceModel> getAllById(Long clientId){
 //
