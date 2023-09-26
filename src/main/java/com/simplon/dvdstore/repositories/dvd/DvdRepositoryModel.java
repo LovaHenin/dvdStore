@@ -22,17 +22,27 @@ public class DvdRepositoryModel {
     private Integer quantiteStock;
     @Column(name = "prix")
     private float prix;
+    @Column(name="photo")
+    private String photo;
 
     public DvdRepositoryModel(String name, String genre) {
         this.name = name;
         this.genre = genre;
     }
 
-    public DvdRepositoryModel(String name, String genre , float prix, Integer quantiteStock) {
+    public DvdRepositoryModel(String name, String genre, Integer quantiteStock, float prix) {
         this.name = name;
         this.genre = genre;
         this.quantiteStock = quantiteStock;
         this.prix = prix;
+    }
+
+    public DvdRepositoryModel(String name, String genre , float prix, Integer quantiteStock, String photo) {
+        this.name = name;
+        this.genre = genre;
+        this.quantiteStock = quantiteStock;
+        this.prix = prix;
+        this.photo=photo;
     }
 
     public DvdRepositoryModel() {

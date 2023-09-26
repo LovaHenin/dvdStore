@@ -16,31 +16,31 @@ public class DvdStoreController {
     DvdStoreService dvdStoreService;
 
     @PostMapping
-    public  boolean addDvdToStore(@RequestBody DvdStoreDTO dvdStoreDTO){
-        DvdServiceModel dvdServiceModel = new DvdServiceModel(dvdStoreDTO.name(), dvdStoreDTO.genre(),dvdStoreDTO.prix(),dvdStoreDTO.quantite());
+    public  boolean addDvdToStore(@RequestBody DvdsStoreDTO dvdsStoreDTO){
+        DvdServiceModel dvdServiceModel = new DvdServiceModel(dvdsStoreDTO.name(), dvdsStoreDTO.genre(),dvdsStoreDTO.prix(),dvdsStoreDTO.quantite(),dvdsStoreDTO.photo());
 
        return dvdStoreService.add(dvdServiceModel);
 
     }
     @GetMapping
-    public List<DvdStoreDTO> getAll(){
+    public List<DvdsStoreDTO> getAll(){
 
-        ArrayList<DvdStoreDTO> dvdStoreDTOS = new ArrayList<DvdStoreDTO>();
+        ArrayList<DvdsStoreDTO> dvdsStoreDTOS = new ArrayList<DvdsStoreDTO>();
 
         ArrayList<DvdServiceModel> dvdServiceModelArrayList =  dvdStoreService.getAll();
 
         for(DvdServiceModel x: dvdServiceModelArrayList){
-            dvdStoreDTOS.add(new DvdStoreDTO(x.getName(),x.getGenre(), x.getPrix(), x.getQuantite()));
+            dvdsStoreDTOS.add(new DvdsStoreDTO(x.getName(),x.getGenre(), x.getPrix(), x.getQuantite(), x.getPhoto()));
         }
 
-        return dvdStoreDTOS;
+        return dvdsStoreDTOS;
     }
     @GetMapping("/{id}")
-    public DvdStoreDTO getById(@PathVariable("id") Long number){
+    public DvdsStoreDTO getById(@PathVariable("id") Long number){
 
-       DvdStoreDTO dvdStoreDTO = new DvdStoreDTO(dvdStoreService.getById(number).get().getName(),dvdStoreService.getById(number).get().getGenre(),dvdStoreService.getById(number).get().getPrix(),dvdStoreService.getById(number).get().getQuantite());
+       DvdsStoreDTO dvdsStoreDTO = new DvdsStoreDTO(dvdStoreService.getById(number).get().getName(),dvdStoreService.getById(number).get().getGenre(),dvdStoreService.getById(number).get().getPrix(),dvdStoreService.getById(number).get().getQuantite(),dvdStoreService.getById(number).get().getPhoto());
 
-            return dvdStoreDTO;
+            return dvdsStoreDTO;
 
         }
         @DeleteMapping("/{id}")
@@ -50,9 +50,9 @@ public class DvdStoreController {
 
 
     @PutMapping("/{id}")
-    public boolean updateDvd(@PathVariable Long id, @RequestBody DvdStroGetDTO dvdStroGetDTO) {
+    public boolean updateDvd(@PathVariable Long id, @RequestBody DvdsGetDTO dvdsGetDTO) {
 
-        DvdServiceModel dvdServiceModel = new DvdServiceModel(Optional.ofNullable(id),dvdStroGetDTO.name(),dvdStroGetDTO.genre(),dvdStroGetDTO.prix(),dvdStroGetDTO.quantite());
+        DvdServiceModel dvdServiceModel = new DvdServiceModel(Optional.ofNullable(id),dvdsGetDTO.name(),dvdsGetDTO.genre(),dvdsGetDTO.prix(),dvdsGetDTO.quantite(),dvdsGetDTO.photo());
       return   dvdStoreService.updateDvd(dvdServiceModel);
 
 
