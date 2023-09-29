@@ -38,7 +38,7 @@ return dvdModelServices;
 public Optional<DvdServiceModel> getById(Long id){
     Optional<DvdRepositoryModel> dvdStoreRepositoryResult=dvdStoreRepository.findById(id);
 
-    return Optional.of(new DvdServiceModel(dvdStoreRepositoryResult.get().getName(), dvdStoreRepositoryResult.get().getGenre(),dvdStoreRepositoryResult.get().getSynopsis(), dvdStoreRepositoryResult.get().getPrix(),dvdStoreRepositoryResult.get().getQuantiteStock(),dvdStoreRepositoryResult.get().getPhoto()));
+    return Optional.of(new DvdServiceModel(Optional.ofNullable(dvdStoreRepositoryResult.get().getId()), dvdStoreRepositoryResult.get().getName(), dvdStoreRepositoryResult.get().getGenre(),dvdStoreRepositoryResult.get().getSynopsis(), dvdStoreRepositoryResult.get().getPrix(),dvdStoreRepositoryResult.get().getQuantiteStock(),dvdStoreRepositoryResult.get().getPhoto()));
 
 }
 
