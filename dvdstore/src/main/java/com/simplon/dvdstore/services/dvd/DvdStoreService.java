@@ -1,5 +1,7 @@
 package com.simplon.dvdstore.services.dvd;
 
+import com.simplon.dvdstore.controllers.dvd.DvdMapper;
+import com.simplon.dvdstore.controllers.dvd.DvdsStoreDTO;
 import com.simplon.dvdstore.repositories.dvd.DvdRepositoryModel;
 import com.simplon.dvdstore.repositories.dvd.DvdStoreRepository;
 import com.simplon.dvdstore.services.dvd.DvdServiceModel;
@@ -11,6 +13,22 @@ import java.util.Optional;
 
 @Service
 public class DvdStoreService {
+    /*
+    private final DvdStoreRepository dvdStoreRepository;
+    private final DvdMapper dvdMapper;
+
+    @Autowired
+    public DvdStoreService(DvdStoreRepository dvdStoreRepository, DvdMapper dvdMapper) {
+        this.dvdStoreRepository = dvdStoreRepository;
+        this.dvdMapper = dvdMapper;
+    }
+    public DvdsStoreDTO addDvd(DvdsStoreDTO dvdStoreDTO) {
+      DvdRepositoryModel dvdRepositoryModel=dvdMapper.toDvdRepositoryModel(dvdStoreDTO);
+      DvdRepositoryModel saveDvdRepositoryModel= dvdStoreRepository.save(dvdRepositoryModel);
+      return dvdMapper.toDvdsStoreDTO(saveDvdRepositoryModel);
+    }*/
+
+
 @Autowired
 DvdStoreRepository dvdStoreRepository;
 
@@ -59,4 +77,5 @@ public Optional<DvdServiceModel> getById(Long id){
     }
         return false;
     }
+
 }

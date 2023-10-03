@@ -17,7 +17,7 @@ public class ClientController {
 @PostMapping
     public boolean ajoutClient(@RequestBody ClientDTO clientDTO){
 
-        ClientServiceModel clientServiceModel = new ClientServiceModel(clientDTO.nom(),clientDTO.adresse());
+        ClientServiceModel clientServiceModel = new ClientServiceModel(clientDTO.nom(),clientDTO.adresse(),clientDTO.photo());
         return clientService.ajouter(clientServiceModel);
 
 
@@ -34,15 +34,15 @@ public List<ClientAfficheDTO>  getAll() {
 //            clientDTOS.add(new ClientDTO(clientServiceModel.getNom(), clientServiceModel.getAdresse()));
 //
 //        }
-        clientServiceModels.forEach((item)->clientAfficheDTOS.add(new ClientAfficheDTO(item.getId().get(), item.getNom(), item.getAdresse())));
+        clientServiceModels.forEach((item)->clientAfficheDTOS.add(new ClientAfficheDTO(item.getId().get(), item.getNom(), item.getAdresse(),item.getPhoto())));
         return clientAfficheDTOS;
 
     }
     @GetMapping("/{id}")
-public ClientDTO getById (@PathVariable("id") Long id){
+public ClientAfficheDTO getById (@PathVariable("id") Long id){
 
-    ClientDTO clientDTO = new ClientDTO(clientService.getById(id).get().getNom(),clientService.getById(id).get().getAdresse());
-    return  clientDTO;
+    ClientAfficheDTO clientAfficheDTO = new ClientAfficheDTO(clientService.getById(id).get().getId().get(),  clientService.getById(id).get().getNom(),clientService.getById(id).get().getAdresse(),clientService.getById(id).get().getPhoto());
+    return  clientAfficheDTO;
 
 }
 

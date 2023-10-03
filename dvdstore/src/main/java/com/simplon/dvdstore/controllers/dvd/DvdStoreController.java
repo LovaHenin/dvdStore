@@ -12,7 +12,18 @@ import java.util.Optional;
 @RestController
 @RequestMapping("dvds")
 public class DvdStoreController {
+    /*
+    private final DvdStoreService dvdStoreService;
+
     @Autowired
+    public DvdStoreController(DvdStoreService dvdStoreService) {
+        this.dvdStoreService = dvdStoreService;
+    }
+    @PostMapping
+    public DvdsStoreDTO addDvd(@RequestBody DvdsStoreDTO dvdStoreDTO) {
+        return dvdStoreService.addDvd(dvdStoreDTO);
+    }*/
+   @Autowired
     DvdStoreService dvdStoreService;
 
     @PostMapping
@@ -22,6 +33,7 @@ public class DvdStoreController {
        return dvdStoreService.add(dvdServiceModel);
 
     }
+
     @GetMapping
     public List<DvdsGetDTO> getAll(){
 

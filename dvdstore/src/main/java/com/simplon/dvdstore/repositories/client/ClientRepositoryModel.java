@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name="client")
 @Data
-@AllArgsConstructor
+
 public class ClientRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,13 +25,22 @@ public class ClientRepositoryModel {
     private String nom;
     @Column(name = "adresse")
     private String adresse;
-
+    @Column(name="photo")
+    private String photo;
 
     public ClientRepositoryModel() {
     }
 
-    public ClientRepositoryModel(String nom, String adresse) {
+    public ClientRepositoryModel(String nom, String adresse, String photo) {
         this.nom = nom;
         this.adresse = adresse;
+        this.photo = photo;
+    }
+
+    public ClientRepositoryModel(Long id, String nom, String adresse, String photo) {
+        this.id = id;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.photo = photo;
     }
 }

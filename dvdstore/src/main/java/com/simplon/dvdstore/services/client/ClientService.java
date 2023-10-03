@@ -13,7 +13,7 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
     public boolean ajouter(ClientServiceModel clientServiceModel) {
-        ClientRepositoryModel clientRepositoryModel = new ClientRepositoryModel(clientServiceModel.getNom(),clientServiceModel.getAdresse());
+        ClientRepositoryModel clientRepositoryModel = new ClientRepositoryModel(clientServiceModel.getNom(),clientServiceModel.getAdresse(),clientServiceModel.getPhoto());
         ClientRepositoryModel clientRepo = clientRepository.save(clientRepositoryModel);
 
         return clientRepo!=null;
@@ -23,13 +23,13 @@ public class ClientService {
 
         ArrayList<ClientServiceModel> clientServiceModels = new ArrayList<>();
         ArrayList<ClientRepositoryModel> clientRepositoryModels=clientRepository.findAll();
-     clientRepositoryModels.forEach((item)-> clientServiceModels.add(new ClientServiceModel(Optional.ofNullable(item.getId()), item.getNom(),item.getAdresse())));
+     clientRepositoryModels.forEach((item)-> clientServiceModels.add(new ClientServiceModel(Optional.ofNullable(item.getId()), item.getNom(),item.getAdresse(),item.getPhoto())));
       return clientServiceModels;
     }
 
     public Optional<ClientServiceModel> getById(Long id) {
         Optional<ClientRepositoryModel> clientRepositoryModel = clientRepository.findById(id);
-        return Optional.of(new ClientServiceModel(clientRepositoryModel.get().getNom(), clientRepositoryModel.get().getAdresse()));
+        return Optional.of(new ClientServiceModel(Optional.ofNullable(clientRepositoryModel.get().getId()), clientRepositoryModel.get().getNom(), clientRepositoryModel.get().getAdresse(),clientRepositoryModel.get().getPhoto()));
 
     }
 }
