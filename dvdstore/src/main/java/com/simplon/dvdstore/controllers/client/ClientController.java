@@ -2,6 +2,7 @@ package com.simplon.dvdstore.controllers.client;
 
 import com.simplon.dvdstore.services.client.ClientService;
 import com.simplon.dvdstore.services.client.ClientServiceModel;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +15,12 @@ import  java.util.Optional;
 public class ClientController {
     @Autowired
     ClientService clientService ;
-@PostMapping
+    @PostMapping
     public boolean ajoutClient(@RequestBody ClientDTO clientDTO){
 
-        ClientServiceModel clientServiceModel = new ClientServiceModel(clientDTO.nom(),clientDTO.adresse());
+      //  ClientServiceModel clientServiceModel = new ClientServiceModel(clientDTO.nom(),clientDTO.adresse());
+    ClientServiceModel clientServiceModel = ClientMapper.INSTANCE.ClientDtoToClientService(clientDTO);
+
         return clientService.ajouter(clientServiceModel);
 
 
