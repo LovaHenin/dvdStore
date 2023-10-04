@@ -36,7 +36,7 @@ public class VenteController {
 
         DvdStoreDTO dvdStoreDTO = new DvdStoreDTO(venteServiceModel.getDvdServiceModel().get().getName(),venteServiceModel.getDvdServiceModel().get().getGenre(),venteServiceModel.getDvdServiceModel().get().getPrix(), venteServiceModel.getDvdServiceModel().get().getQuantite());
 
-        ClientDTO clientDTO =new ClientDTO(venteServiceModel.getClientServiceModel().get().getNom(),venteServiceModel.getClientServiceModel().get().getAdresse());
+        ClientDTO clientDTO =new ClientDTO(venteServiceModel.getClientServiceModel().get().getNom(),venteServiceModel.getClientServiceModel().get().getAdresse(),venteServiceModel.getClientServiceModel().get().getPhoto());
 
 
         ventesAfficheDTOS.add(new VentesAfficheDTO(venteServiceModel.getId().get(), venteServiceModel.getDate().toString(),venteServiceModel.getQuantite(),venteServiceModel.getPrix(),dvdStoreDTO,clientDTO));
@@ -45,24 +45,22 @@ public class VenteController {
 
     }
     @GetMapping ("/{id}")
-    public List<VentesAfficheDTO> getAllById(@PathVariable("id") Long id){
+    public List<VentesAfficheDTO> getVenteAllByIdClient(@PathVariable("id") Long id){
         List<VentesAfficheDTO> ventesAfficheDTOS = new ArrayList<>();
-        try {
-            ArrayList<VenteServiceModel> venteServiceModels = venteService.getAllById(id);
+
+            ArrayList<VenteServiceModel> venteServiceModels = venteService.getVenteAllByIdClient(id);
 
             for (VenteServiceModel venteServiceModel : venteServiceModels) {
 
                 DvdStoreDTO dvdStoreDTO = new DvdStoreDTO(venteServiceModel.getDvdServiceModel().get().getName(), venteServiceModel.getDvdServiceModel().get().getGenre(), venteServiceModel.getDvdServiceModel().get().getPrix(), venteServiceModel.getDvdServiceModel().get().getQuantite());
 
-                ClientDTO clientDTO = new ClientDTO(venteServiceModel.getClientServiceModel().get().getNom(), venteServiceModel.getClientServiceModel().get().getAdresse());
+                ClientDTO clientDTO = new ClientDTO(venteServiceModel.getClientServiceModel().get().getNom(), venteServiceModel.getClientServiceModel().get().getAdresse(),venteServiceModel.getClientServiceModel().get().getPhoto());
 
 
                 ventesAfficheDTOS.add(new VentesAfficheDTO(venteServiceModel.getId().get(), venteServiceModel.getDate().toString(), venteServiceModel.getQuantite(), venteServiceModel.getPrix(), dvdStoreDTO, clientDTO));
             }
             return ventesAfficheDTOS;
-        }catch (ClientNotFoundException ex){
-            throw new ClientNotFoundException( HttpStatus.NOT_FOUND,"non");
-        }
+
     }
 
 
