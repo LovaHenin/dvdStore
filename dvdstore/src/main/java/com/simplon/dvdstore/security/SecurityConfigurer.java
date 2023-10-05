@@ -43,7 +43,7 @@ public class SecurityConfigurer {
 // Si vous venez du web et souhaitez le faire dans le sens inverse
 // Détermination des endpoints privées
         http = http.authorizeHttpRequests((r) ->
-                r.requestMatchers("/api/v1/**").authenticated()
+                r.requestMatchers("/dvds/**").authenticated()
                         .anyRequest().permitAll());
         return http.build();
     }
