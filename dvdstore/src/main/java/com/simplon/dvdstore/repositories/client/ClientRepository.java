@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+//crudRepo ou JPARepo
 @Repository
 public interface ClientRepository  extends CrudRepository<ClientRepositoryModel,Long> {
     ArrayList<ClientRepositoryModel>findAll();

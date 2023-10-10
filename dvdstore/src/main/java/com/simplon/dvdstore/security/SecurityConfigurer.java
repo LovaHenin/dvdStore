@@ -37,9 +37,12 @@ public class SecurityConfigurer {
 // Standard pour les REST API
         http = http.cors().and().csrf().disable();
         http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
+
+
 // On place notre filter dans le middleware
         http = http.addFilterBefore(securityFilter(),
                 UsernamePasswordAuthenticationFilter.class);
+
 // Si vous venez du web et souhaitez le faire dans le sens inverse
 // Détermination des endpoints privées
         http = http.authorizeHttpRequests((r) ->
@@ -47,5 +50,5 @@ public class SecurityConfigurer {
                         .anyRequest().permitAll());
         return http.build();
     }
-}
+}//
 //Remarque : configuration de votre application avec le filter et le endpoint

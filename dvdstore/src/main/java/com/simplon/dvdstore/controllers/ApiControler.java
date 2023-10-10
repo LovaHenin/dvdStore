@@ -10,10 +10,11 @@ import com.simplon.dvdstore.controllers.vente.VenteController;
 import com.simplon.dvdstore.controllers.vente.VenteDTO;
 import com.simplon.dvdstore.controllers.vente.VentesAfficheDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@PreAuthorize("hasAuthority('admin')")
 @RestController
 @RequestMapping("/api") // Préfixe commun pour toutes les routes
 public class ApiControler {

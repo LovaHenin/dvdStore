@@ -16,6 +16,7 @@ public interface ClientMapper {
     @Mapping(source = "id", target = "id",qualifiedByName = "optionalToLong")
     ClientAfficheDTO ClientServiceToClientDto(ClientServiceModel clientServiceModel);
 
+    //transtypage optional => long
     @Named("optionalToLong")
     default Long optionalToLong(Optional<Long> id) {
         return id.orElse(null);
