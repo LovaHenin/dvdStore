@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface DvdStoreRepository extends JpaRepository<DvdRepositoryModel,Long> {
 
    // DvdRepositoryModel save(DvdRepositoryModel dvdRepositoryModel);
-    DvdRepositoryModel dvdRepo= new DvdRepositoryModel();
+    //DvdRepositoryModel dvdRepo= new DvdRepositoryModel();
 
    ArrayList<DvdRepositoryModel> findAll();
 

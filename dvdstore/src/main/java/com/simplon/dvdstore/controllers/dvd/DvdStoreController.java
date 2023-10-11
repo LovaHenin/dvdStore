@@ -13,7 +13,18 @@ import java.util.Optional;
 @RestController
 @RequestMapping("dvds")
 public class DvdStoreController {
+    /*
+    private final DvdStoreService dvdStoreService;
+
     @Autowired
+    public DvdStoreController(DvdStoreService dvdStoreService) {
+        this.dvdStoreService = dvdStoreService;
+    }
+    @PostMapping
+    public DvdsStoreDTO addDvd(@RequestBody DvdsStoreDTO dvdStoreDTO) {
+        return dvdStoreService.addDvd(dvdStoreDTO);
+    }*/
+   @Autowired
     DvdStoreService dvdStoreService;
 
     @PostMapping
@@ -23,6 +34,7 @@ public class DvdStoreController {
        return dvdStoreService.add(dvdServiceModel);
 
     }
+
     @GetMapping
     public List<DvdsGetDTO> getAll(){
 
@@ -39,11 +51,11 @@ public class DvdStoreController {
 
 
     @GetMapping("/{id}")
-    public DvdsStoreDTO getById(@PathVariable("id") Long number){
+    public DvdStroGetDTO getById(@PathVariable("id") Long number){
 
-       DvdsStoreDTO dvdsStoreDTO = new DvdsStoreDTO(dvdStoreService.getById(number).get().getName(),dvdStoreService.getById(number).get().getGenre(),dvdStoreService.getById(number).get().getSynopsis(), dvdStoreService.getById(number).get().getPrix(),dvdStoreService.getById(number).get().getQuantite(),dvdStoreService.getById(number).get().getPhoto());
+        DvdStroGetDTO dvdStroGetDTO = new DvdStroGetDTO(dvdStoreService.getById(number).get().getId().get(), dvdStoreService.getById(number).get().getName(),dvdStoreService.getById(number).get().getGenre(),dvdStoreService.getById(number).get().getSynopsis(), dvdStoreService.getById(number).get().getPrix(),dvdStoreService.getById(number).get().getQuantite(),dvdStoreService.getById(number).get().getPhoto());
 
-            return dvdsStoreDTO;
+            return dvdStroGetDTO;
 
         }
         @DeleteMapping("/{id}")

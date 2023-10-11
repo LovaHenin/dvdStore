@@ -1,4 +1,4 @@
 package com.simplon.dvdstore.controllers.client;
 
-public record ClientDTO(String nom, String adresse) {
+public record ClientDTO(String nom, String adresse,String photo) {
 }
