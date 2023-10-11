@@ -12,7 +12,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Création de la table client et ses champs
 @Entity
 @Table(name="client")
 @Data

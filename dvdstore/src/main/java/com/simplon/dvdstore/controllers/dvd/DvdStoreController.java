@@ -3,6 +3,7 @@ package com.simplon.dvdstore.controllers.dvd;
 import com.simplon.dvdstore.services.dvd.DvdServiceModel;
 import com.simplon.dvdstore.services.dvd.DvdStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class DvdStoreController {
 
         return dvdsGetDTOS;
     }
+
+
     @GetMapping("/{id}")
     public DvdStroGetDTO getById(@PathVariable("id") Long number){
 
