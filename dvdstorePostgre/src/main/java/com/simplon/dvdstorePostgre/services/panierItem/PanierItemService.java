@@ -7,6 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 // avec final pour ne pas faire le constructeur
 //@RequiredArgsConstructor
 @Service
@@ -20,7 +24,13 @@ public class PanierItemService {
         return panierItemRepositoryModel1!=null;
     }
 
+    public List<PanierItemServiceModel> getAll(){
 
+       return panierItemRepository.findAll().stream().map((value)->PanierItemMapper.INSTANCE.repoToService(value)).collect(Collectors.toList());
+
+
+
+    }
 
 
     // en réalité comme c'est instancier une fois on peut utiliser final
