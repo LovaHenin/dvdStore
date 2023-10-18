@@ -2,21 +2,31 @@ package com.simplon.dvdstorePostgre.services.panierItem;
 
 import com.simplon.dvdstorePostgre.controllers.panierItem.PanierItemMapper;
 import com.simplon.dvdstorePostgre.repositories.panierItem.PanierItemRepository;
+import com.simplon.dvdstorePostgre.repositories.panierItem.PanierItemRepositoryModel;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// avec final pour ne pas faire le constructeur
+//@RequiredArgsConstructor
 @Service
 public class PanierItemService {
-private final PanierItemRepository panierItemRepository;
-
-    public PanierItemService(PanierItemRepository panierItemRepository) {
-        this.panierItemRepository = panierItemRepository;
-    }
+    @Autowired
+    PanierItemRepository panierItemRepository;
 
     public boolean insererPanierItem(PanierItemServiceModel panierItemServiceModel) {
-
-        panierItemRepository.insererDansPanierItems(panierItemServiceModel.getPanierId(), panierItemServiceModel.getDvdId(), panierItemServiceModel.getQuantity(), panierItemServiceModel.getUnitPrice());
-        return true;
+        PanierItemRepositoryModel panierItemRepositoryModel = PanierItemMapper.INSTANCE.serviceToRepository(panierItemServiceModel);
+        PanierItemRepositoryModel panierItemRepositoryModel1 = panierItemRepository.save(panierItemRepositoryModel);
+        return panierItemRepositoryModel1!=null;
     }
+
+
+
+
+    // en réalité comme c'est instancier une fois on peut utiliser final
+//private final PanierItemRepository panierItemRepository;
+
+
    /*
     PanierItemRepository panierItemRepository;
 @PersistenceContext

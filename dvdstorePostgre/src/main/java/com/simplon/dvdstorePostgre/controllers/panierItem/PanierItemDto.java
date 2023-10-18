@@ -1,3 +1,3 @@
 package com.simplon.dvdstorePostgre.controllers.panierItem;
 
-public record PanierItemDto(Long panierId, Long dvdId, int quantity, Float unitPrice) {}
+public record PanierItemDto(Integer  panierId, Integer dvdId, Float dvdsPrice, Integer quantity) {}
