@@ -10,8 +10,8 @@ public class PanierItemRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; // Vous pouvez définir un identifiant généré automatiquement
-    @Column(name="panier_id")
-    private Integer panierId;
+  @Column(name="panier_id")
+   private Integer panierId;
     @Column(name="dvd_id")
     private Integer dvdId;
     @Column(name="dvds_price")
@@ -19,9 +19,9 @@ public class PanierItemRepositoryModel {
     @Column(name="quantity")
     private Integer quantity;
 
-   /* @ManyToOne
-    @JoinColumn(name = "panier_id")
-    private PanierRepositoryModel panier;*/
+//    @ManyToOne
+//    @JoinColumn(name = "panier_id")
+//    private PanierRepositoryModel panier;
 
     public PanierItemRepositoryModel() {
     }
