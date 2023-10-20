@@ -16,15 +16,18 @@ public class PanierRepositoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name="created_at")
     private LocalDateTime createdAt;
+
     @Column(name="amount",columnDefinition = "REAL")
     private Float amount;
+
     @Column(name="client_id")
     private int clientId;
 
-//    @OneToMany(mappedBy = "panier", orphanRemoval = true)
-//    private List<PanierItemRepositoryModel> paniers = new ArrayList<>();
+   @OneToMany(mappedBy = "panier", orphanRemoval = true)
+    private List<PanierItemRepositoryModel> dvds = new ArrayList<>();
 
     @PrePersist
     public void prePersist(){
