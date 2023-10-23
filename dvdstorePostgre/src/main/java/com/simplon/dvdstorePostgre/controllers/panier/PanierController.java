@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("panier")
+@RequestMapping("/api/panier")
 public class PanierController {
     @Autowired
     private PanierService panierService;

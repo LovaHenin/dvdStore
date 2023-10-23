@@ -10,7 +10,7 @@ public record PanierServiceModel(int id,
                                  LocalDateTime createdAt,
                                  Float amount,
                                  int clientId,
-                                 // on a repoModel
+                                 // on utilise List<repoModel>
                                  List<PanierItemRepositoryModel> dvds
 
 //                                 List<PanierItemServiceModel>dvds

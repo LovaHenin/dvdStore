@@ -28,10 +28,10 @@ public class PanierItemService {
 
        return panierItemRepository.findAll().stream().map((value)->PanierItemMapper.INSTANCE.repoToService(value)).collect(Collectors.toList());
 
-
-
     }
-
+public void deleteById(Long id){
+        panierItemRepository.deleteById(id);
+}
 
     // en réalité comme c'est instancier une fois on peut utiliser final
 //private final PanierItemRepository panierItemRepository;

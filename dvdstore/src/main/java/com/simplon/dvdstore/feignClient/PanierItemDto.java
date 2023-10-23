@@ -1,4 +1,4 @@
 package com.simplon.dvdstore.feignClient;
 
-public record PanierItemDto(Integer  panierId, Integer dvdId, Float dvdsPrice, Integer quantity) {
+public record PanierItemDto(Integer  id, Integer dvdId, Float dvdsPrice, Integer quantity) {
 }

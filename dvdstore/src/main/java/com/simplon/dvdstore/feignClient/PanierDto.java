@@ -9,4 +9,4 @@ public record PanierDto(Long id,
                         LocalDateTime createdAt,
                         Float amount,
                         Long clientId,
-                        List<DvdsGetDTO> dvds) {}
+                        List<PanierItemDto> dvds) {}

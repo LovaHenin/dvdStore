@@ -20,19 +20,5 @@ public class PanierItemServiceModel {
     public PanierItemServiceModel() {
     }
 
-//    public PanierItemServiceModel(Long panierId, Long dvdId, Float dvdsPrice, int quantity) {
-//        this.panierId = panierId;
-//        this.dvdId = dvdId;
-//        this.dvdsPrice = dvdsPrice;
-//        this.quantity = quantity;
-//
-//    }
 
-//    public PanierItemServiceModel(Optional<Long> id, Long panierId, Long dvdId, Float dvdsPrice, int quantity) {
-//        this.id = id;
-//        this.panierId = panierId;
-//        this.dvdId = dvdId;
-//        this.dvdsPrice = dvdsPrice;
-//        this.quantity = quantity;
-//    }
 }
