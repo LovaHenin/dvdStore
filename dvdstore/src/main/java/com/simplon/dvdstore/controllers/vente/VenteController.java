@@ -1,5 +1,6 @@
 package com.simplon.dvdstore.controllers.vente;
 
+import com.simplon.dvdstore.controllers.client.ClientAfficheDTO;
 import com.simplon.dvdstore.controllers.client.ClientDTO;
 import com.simplon.dvdstore.controllers.dvd.DvdStoreDTO;
 import com.simplon.dvdstore.exceptions.ClientNotFoundException;
@@ -36,10 +37,10 @@ public class VenteController {
 
         DvdStoreDTO dvdStoreDTO = new DvdStoreDTO(venteServiceModel.getDvdServiceModel().get().getName(),venteServiceModel.getDvdServiceModel().get().getGenre(),venteServiceModel.getDvdServiceModel().get().getPrix(), venteServiceModel.getDvdServiceModel().get().getQuantite());
 
-        ClientDTO clientDTO =new ClientDTO(venteServiceModel.getClientServiceModel().get().getNom(),venteServiceModel.getClientServiceModel().get().getAdresse(),venteServiceModel.getClientServiceModel().get().getPhoto());
+    ClientAfficheDTO clientAfficheDTO =new ClientAfficheDTO(venteServiceModel.getClientServiceModel().get().getId().get(), venteServiceModel.getClientServiceModel().get().getNom(),venteServiceModel.getClientServiceModel().get().getAdresse(),venteServiceModel.getClientServiceModel().get().getPhoto());
 
 
-        ventesAfficheDTOS.add(new VentesAfficheDTO(venteServiceModel.getId().get(), venteServiceModel.getDate().toString(),venteServiceModel.getQuantite(),venteServiceModel.getPrix(),dvdStoreDTO,clientDTO));
+        ventesAfficheDTOS.add(new VentesAfficheDTO(venteServiceModel.getId().get(), venteServiceModel.getDate().toString(),venteServiceModel.getQuantite(),venteServiceModel.getPrix(),dvdStoreDTO,clientAfficheDTO));
     }
     return ventesAfficheDTOS;
 
@@ -54,10 +55,10 @@ public class VenteController {
 
                 DvdStoreDTO dvdStoreDTO = new DvdStoreDTO(venteServiceModel.getDvdServiceModel().get().getName(), venteServiceModel.getDvdServiceModel().get().getGenre(), venteServiceModel.getDvdServiceModel().get().getPrix(), venteServiceModel.getDvdServiceModel().get().getQuantite());
 
-                ClientDTO clientDTO = new ClientDTO(venteServiceModel.getClientServiceModel().get().getNom(), venteServiceModel.getClientServiceModel().get().getAdresse(),venteServiceModel.getClientServiceModel().get().getPhoto());
+               ClientAfficheDTO clientAfficheDTO = new ClientAfficheDTO(venteServiceModel.getClientServiceModel().get().getId().get(), venteServiceModel.getClientServiceModel().get().getNom(), venteServiceModel.getClientServiceModel().get().getAdresse(),venteServiceModel.getClientServiceModel().get().getPhoto());
 
 
-                ventesAfficheDTOS.add(new VentesAfficheDTO(venteServiceModel.getId().get(), venteServiceModel.getDate().toString(), venteServiceModel.getQuantite(), venteServiceModel.getPrix(), dvdStoreDTO, clientDTO));
+                ventesAfficheDTOS.add(new VentesAfficheDTO(venteServiceModel.getId().get(), venteServiceModel.getDate().toString(), venteServiceModel.getQuantite(), venteServiceModel.getPrix(), dvdStoreDTO,clientAfficheDTO));
             }
             return ventesAfficheDTOS;
 

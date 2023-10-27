@@ -4,6 +4,7 @@ import com.simplon.dvdstore.controllers.client.ClientAfficheDTO;
 import com.simplon.dvdstore.controllers.client.ClientController;
 import com.simplon.dvdstore.controllers.client.ClientDTO;
 import com.simplon.dvdstore.controllers.dvd.DvdStoreController;
+import com.simplon.dvdstore.controllers.dvd.DvdStroGetDTO;
 import com.simplon.dvdstore.controllers.dvd.DvdsGetDTO;
 import com.simplon.dvdstore.controllers.dvd.DvdsStoreDTO;
 import com.simplon.dvdstore.controllers.vente.VenteController;
@@ -40,7 +41,7 @@ public class ApiControler {
     }
 
     @GetMapping("/dvds/{id}")
-    public DvdsStoreDTO getDvdById(@PathVariable("id") Long number) {
+    public DvdStroGetDTO getDvdById(@PathVariable("id") Long number) {
         return dvdStoreController.getById(number);
     }
 
@@ -66,7 +67,7 @@ public class ApiControler {
     }
 
     @GetMapping("/clients/{id}")
-    public ClientDTO getClientById(@PathVariable("id") Long id) {
+    public ClientAfficheDTO getClientById(@PathVariable("id") Long id) {
         return clientController.getById(id);
     }
 
@@ -83,6 +84,6 @@ public class ApiControler {
 
     @GetMapping("/ventes/{id}")
     public List<VentesAfficheDTO> getVentesByClientId(@PathVariable("id") Long id) {
-        return venteController.getAllById(id);
+        return venteController.getVenteAllByIdClient(id);
     }
 }

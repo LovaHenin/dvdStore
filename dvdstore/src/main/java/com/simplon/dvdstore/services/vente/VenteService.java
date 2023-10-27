@@ -65,7 +65,7 @@ public class VenteService {
             DvdServiceModel dvdServiceModel = new DvdServiceModel(venteRepositoryModel.getDvd().getName(),venteRepositoryModel.getDvd().getGenre(),venteRepositoryModel.getDvd().getPrix(),venteRepositoryModel.getDvd().getQuantiteStock());
 
             //instanciation de l'objet ClienServiceModel
-            ClientServiceModel clientServiceModel = new ClientServiceModel(venteRepositoryModel.getClient().getNom(),venteRepositoryModel.getClient().getAdresse(),venteRepositoryModel.getClient().getPhoto());
+            ClientServiceModel clientServiceModel = new ClientServiceModel(Optional.ofNullable(venteRepositoryModel.getClient().getId()),  venteRepositoryModel.getClient().getNom(),venteRepositoryModel.getClient().getAdresse(),venteRepositoryModel.getClient().getPhoto());
 
             //optional car le champ dvdService est optional dans venteServiceModel
          venteServiceModels.add(new VenteServiceModel(
@@ -95,9 +95,10 @@ public class VenteService {
 
                 DvdServiceModel dvdServiceModel = new DvdServiceModel(venteRepositoryModel.getDvd().getName(), venteRepositoryModel.getDvd().getGenre(), venteRepositoryModel.getDvd().getPrix(), venteRepositoryModel.getDvd().getQuantiteStock());
 
-                ClientServiceModel clientServiceModel = new ClientServiceModel(venteRepositoryModel.getClient().getNom(), venteRepositoryModel.getClient().getAdresse(),venteRepositoryModel.getClient().getPhoto());
+                ClientServiceModel clientServiceModel = new ClientServiceModel(Optional.ofNullable(venteRepositoryModel.getClient().getId()), venteRepositoryModel.getClient().getNom(), venteRepositoryModel.getClient().getAdresse(),venteRepositoryModel.getClient().getPhoto());
 
                 venteServiceModels.add(new VenteServiceModel(
+                        Optional.of(venteRepositoryModel.getId()),
                         venteRepositoryModel.getDate(),
                         venteRepositoryModel.getPrix(),
                         venteRepositoryModel.getQuantite(),
