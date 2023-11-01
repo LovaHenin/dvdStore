@@ -23,7 +23,7 @@ public class PanierItemRepositoryModel {
     private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "panier_id")
+    @JoinColumn(name="panier_id")
     private PanierRepositoryModel panier;
 
     public PanierItemRepositoryModel() {
