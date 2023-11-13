@@ -33,14 +33,18 @@ public class DvdStoreService {
 DvdStoreRepository dvdStoreRepository;
 
 
-public  boolean add( DvdServiceModel dvdServiceModel){
-    DvdRepositoryModel dvdRepositoryModel = new DvdRepositoryModel(dvdServiceModel.getName(),dvdServiceModel.getGenre(), dvdServiceModel.getSynopsis(),dvdServiceModel.getQuantite(),dvdServiceModel.getPrix(),dvdServiceModel.getPhoto());
+public  boolean add( DvdServiceModel dvdServiceModel) {
+    if (dvdServiceModel.getName() == null || dvdServiceModel.getGenre()==null) {
+ return false;
+    } else {
 
-   DvdRepositoryModel dvdRepositoryModelReturned = dvdStoreRepository.save(dvdRepositoryModel);
+        DvdRepositoryModel dvdRepositoryModel = new DvdRepositoryModel(dvdServiceModel.getName(), dvdServiceModel.getGenre(), dvdServiceModel.getSynopsis(), dvdServiceModel.getQuantite(), dvdServiceModel.getPrix(), dvdServiceModel.getPhoto());
 
-   return dvdRepositoryModelReturned!=null;
+        DvdRepositoryModel dvdRepositoryModelReturned = dvdStoreRepository.save(dvdRepositoryModel);
+
+        return dvdRepositoryModelReturned != null;
+    }
 }
-
 public ArrayList<DvdServiceModel> getAll() {
     ArrayList<DvdServiceModel> dvdModelServices = new ArrayList<>();
     ArrayList<DvdRepositoryModel> dvdRepositoryModels = dvdStoreRepository.findAll();
